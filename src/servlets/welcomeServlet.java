@@ -3,9 +3,9 @@ package servlets;
 import classes.Dbd;
 import classes.User;
 import classes.Wallet;
-import ejb.SessionBean;
-import ejb.SettingsBean;
-import ejb.counterBean;
+//import ejb.SessionBean;
+//import ejb.SettingsBean;
+//import ejb.counterBean;
 
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
@@ -20,15 +20,18 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-
+/*Створити сервіс, який може повертати факторіал введеного чісла.
+Создать сервіс, який би повертав набір всіх записів будь-який з
+таблиць своєї прикладної моделі за варіантом лаб.раб. № 1 у форматі JSON.
+ */
 @WebServlet("/welcomeServlet")
 public class welcomeServlet extends HttpServlet {
-    @EJB
-    SessionBean cons;
-    @EJB
-    counterBean c;
-    @EJB
-    SettingsBean settings;
+//    @EJB
+//    SessionBean cons;
+//    @EJB
+//    counterBean c;
+//    @EJB
+//    SettingsBean settings;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -36,9 +39,9 @@ public class welcomeServlet extends HttpServlet {
        // List<Wallet> wallets = bankDao.findAllWallets();
 
        // System.out.println("Worked? Size: " + wallets.size());
-        if(settings.isGodMode){
-            cons.writeToConsole("U r in GodMode!");
-        }
+//        if(settings.isGodMode){
+//            cons.writeToConsole("U r in GodMode!");
+//        }
         HttpSession session = request.getSession();
         Dbd dbd = new Dbd();
         User current_user = null;
@@ -72,10 +75,10 @@ public class welcomeServlet extends HttpServlet {
             if(reg_code == 1){
                 current_user = dbd.getUser(login);
                 session.setAttribute("current_user", current_user);
-                cons.writeToConsole("Logined!");//////////////////////////////USAGE OF EJB
-                c.incr();
-                cons.writeToConsole(Integer.toString(c.getI()));
-                cons.doTask1();//asynchronous
+//                cons.writeToConsole("Logined!");//////////////////////////////USAGE OF EJB
+//                c.incr();
+//                cons.writeToConsole(Integer.toString(c.getI()));
+//                cons.doTask1();//asynchronous
                 response.sendRedirect("/Lab22EE_war_exploded/main");
             } else{
                 session.setAttribute("reg_code", reg_code);
